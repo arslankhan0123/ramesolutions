@@ -23,13 +23,13 @@ define( 'WP_CACHE', true );
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'u876127685_bc1Hj' );
+define( 'DB_NAME', 'ramesolutions' );
 
 /** Database username */
-define( 'DB_USER', 'u876127685_GSwaG' );
+define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'iWMly67ho7' );
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
 define( 'DB_HOST', '127.0.0.1' );
@@ -74,6 +74,9 @@ $table_prefix = 'wp_';
 
 
 /* Add any custom values between this line and the "stop editing" line. */
+
+define( 'WP_HOME', 'http://ramesolutions.test' );
+define( 'WP_SITEURL', 'http://ramesolutions.test' );
 
 
 
