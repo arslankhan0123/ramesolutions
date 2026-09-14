@@ -18,3 +18,16 @@ add_action(
 	},
 	20
 );
+
+// Global styling for all pages
+add_action( 'wp_head', static function () {
+	echo '<style>
+		@media(max-width:767px) {
+			.custom-logo-link img, .site-logo img, .site-header .custom-logo {
+				width: 150px !important;
+				max-width: 100% !important;
+				max-height: none !important;
+			}
+		}
+	</style>';
+} );
