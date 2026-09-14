@@ -75,9 +75,12 @@ $table_prefix = 'wp_';
 
 /* Add any custom values between this line and the "stop editing" line. */
 
+// --- LOCAL DEV CHANGES START ---
+// These lines were added to fix ERR_SSL_PROTOCOL_ERROR on local env
 define('WP_HOME', 'http://ramesolutions.test');
 define('WP_SITEURL', 'http://ramesolutions.test');
 define('FORCE_SSL_ADMIN', false);
+// --- LOCAL DEV CHANGES END ---
 /**
  * For developers: WordPress debugging mode.
  *

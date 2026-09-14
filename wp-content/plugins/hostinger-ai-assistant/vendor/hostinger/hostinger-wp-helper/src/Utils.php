@@ -4,13 +4,15 @@ namespace Hostinger\WpHelper;
 
 class Utils {
 
-	private static string $apiTokenFile = '';
+	// private static string $apiTokenFile; // OLD (Caused 'must not be accessed before initialization' error)
+	private static string $apiTokenFile = ''; // NEW
 
 	private const HPANEL_DOMAIN_URL = 'https://hpanel.hostinger.com/websites/';
 	private const HOSTINGER_SITE = '.hostingersite.com';
 
 	private static function getApiTokenPath(): void {
-		$hostingerDirParts = explode( '/', str_replace('\\', '/', __DIR__) );
+		// $hostingerDirParts = explode( '/', __DIR__ ); // OLD (Caused undefined array key on Windows)
+		$hostingerDirParts = explode( '/', str_replace('\\', '/', __DIR__) ); // NEW
 		if ( count( $hostingerDirParts ) >= 3 ) {
 			$hostingerServerRootPath = '/' . $hostingerDirParts[1] . '/' . $hostingerDirParts[2];
 			self::$apiTokenFile      = $hostingerServerRootPath . '/.api_token';
@@ -81,7 +83,8 @@ class Utils {
 	public static function getApiToken(): string {
 		self::getApiTokenPath();
 
-		if ( ! empty( self::$apiTokenFile ) && file_exists( self::$apiTokenFile ) ) {
+		// if ( file_exists( self::$apiTokenFile ) ) { // OLD (Caused ValueError if string is empty)
+		if ( ! empty( self::$apiTokenFile ) && file_exists( self::$apiTokenFile ) ) { // NEW
 			$apiToken = file_get_contents( self::$apiTokenFile );
 			if ( ! empty( $apiToken ) ) {
 				return $apiToken;

@@ -67,8 +67,9 @@ if ( ! class_exists( 'Hostinger_Temporary_Domain_Handler' ) ) {
                 return $url;
             }
 
-            $protocol = is_ssl() ? 'https://' : 'http://';
-            $filtered_url = str_replace( [ 'http://' . $this->site_domain, 'https://' . $this->site_domain ], $protocol . $this->current_domain, $url );
+//            $filtered_url = str_replace( [ 'http://' . $this->site_domain, 'https://' . $this->site_domain ], 'https://' . $this->current_domain, $url ); // OLD
+            $protocol = is_ssl() ? 'https://' : 'http://'; // NEW
+            $filtered_url = str_replace( [ 'http://' . $this->site_domain, 'https://' . $this->site_domain ], $protocol . $this->current_domain, $url ); // NEW
 
             return filter_var( $filtered_url, FILTER_SANITIZE_URL ) ?: '';
         }
