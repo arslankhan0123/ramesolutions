@@ -35,6 +35,7 @@ class Router extends Base {
 	const ACTION_CSS                   = 'css';
 	const ACTION_UCSS                  = 'ucss';
 	const ACTION_VPI                   = 'vpi';
+	const ACTION_OPTIMAX               = 'optimax';
 	const ACTION_PRESET                = 'preset';
 	const ACTION_IMPORT                = 'import';
 	const ACTION_REPORT                = 'report';
@@ -57,6 +58,7 @@ class Router extends Base {
 		self::ACTION_CSS,
 		self::ACTION_UCSS,
 		self::ACTION_VPI,
+		self::ACTION_OPTIMAX,
 		self::ACTION_DB_OPTM,
 		self::ACTION_DEBUG2,
 		self::ACTION_GUEST,
@@ -206,7 +208,7 @@ class Router extends Base {
 		$rest_prefix = function_exists('rest_get_url_prefix') ? rest_get_url_prefix() : apply_filters('rest_url_prefix', 'wp-json');
 		if (
 			!empty($_SERVER['REQUEST_URI']) &&
-			strpos($_SERVER['REQUEST_URI'], $rest_prefix . '/wp/v2/media') !== false &&
+			REST::str_hit_uri($_SERVER['REQUEST_URI'], [$rest_prefix . '/wp/v2/media']) &&
 			isset($_SERVER['HTTP_REFERER']) &&
 			strpos($_SERVER['HTTP_REFERER'], 'wp-admin') !== false
 		) {
@@ -648,6 +650,7 @@ class Router extends Base {
 			case self::ACTION_CSS:
 			case self::ACTION_UCSS:
 			case self::ACTION_VPI:
+			case self::ACTION_OPTIMAX:
 			case self::ACTION_CONF:
 			case self::ACTION_ACTIVATION:
 			case self::ACTION_HEALTH:

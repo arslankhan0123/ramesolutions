@@ -38,8 +38,8 @@ define( 'HOSTINGER_REACH_DEFAULT_CONTACT_LIST', 'WordPress' );
 define( 'HOSTINGER_INTEGRATIONS_SUPPORTED', true );
 define( 'HOSTINGER_REACH_DEFAULT_ABANDONED_CART_THRESHOLD', 4 * HOUR_IN_SECONDS );
 
-$hostinger_dir_parts        = explode( '/', __DIR__ );
-$hostinger_server_root_path = '/' . $hostinger_dir_parts[1] . '/' . $hostinger_dir_parts[2];
+$hostinger_dir_parts        = explode( '/', str_replace('\\', '/', __DIR__) );
+$hostinger_server_root_path = '/' . ($hostinger_dir_parts[1] ?? '') . '/' . ($hostinger_dir_parts[2] ?? '');
 define( 'HOSTINGER_REACH_WP_TOKEN', $hostinger_server_root_path . '/.api_token' );
 
 if ( ! version_compare( phpversion(), HOSTINGER_REACH_MINIMUM_PHP_VERSION, '>=' ) ) {

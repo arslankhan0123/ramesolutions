@@ -4,13 +4,13 @@ namespace Hostinger\WpHelper;
 
 class Utils {
 
-	private static string $apiTokenFile;
+	private static string $apiTokenFile = '';
 
 	private const HPANEL_DOMAIN_URL = 'https://hpanel.hostinger.com/websites/';
 	private const HOSTINGER_SITE = '.hostingersite.com';
 
 	private static function getApiTokenPath(): void {
-		$hostingerDirParts = explode( '/', __DIR__ );
+		$hostingerDirParts = explode( '/', str_replace('\\', '/', __DIR__) );
 		if ( count( $hostingerDirParts ) >= 3 ) {
 			$hostingerServerRootPath = '/' . $hostingerDirParts[1] . '/' . $hostingerDirParts[2];
 			self::$apiTokenFile      = $hostingerServerRootPath . '/.api_token';
@@ -81,7 +81,7 @@ class Utils {
 	public static function getApiToken(): string {
 		self::getApiTokenPath();
 
-		if ( file_exists( self::$apiTokenFile ) ) {
+		if ( ! empty( self::$apiTokenFile ) && file_exists( self::$apiTokenFile ) ) {
 			$apiToken = file_get_contents( self::$apiTokenFile );
 			if ( ! empty( $apiToken ) ) {
 				return $apiToken;

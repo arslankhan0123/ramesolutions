@@ -67,7 +67,8 @@ if ( ! class_exists( 'Hostinger_Temporary_Domain_Handler' ) ) {
                 return $url;
             }
 
-            $filtered_url = str_replace( [ 'http://' . $this->site_domain, 'https://' . $this->site_domain ], 'https://' . $this->current_domain, $url );
+            $protocol = is_ssl() ? 'https://' : 'http://';
+            $filtered_url = str_replace( [ 'http://' . $this->site_domain, 'https://' . $this->site_domain ], $protocol . $this->current_domain, $url );
 
             return filter_var( $filtered_url, FILTER_SANITIZE_URL ) ?: '';
         }

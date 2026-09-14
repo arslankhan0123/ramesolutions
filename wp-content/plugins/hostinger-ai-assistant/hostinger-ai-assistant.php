@@ -86,8 +86,8 @@ if ( ! defined( 'HOSTINGER_AI_ASSISTANT_CONFIG_PATH' ) ) {
  */
 
 if ( ! defined( 'HOSTINGER_AI_ASSISTANT_WP_AI_TOKEN' ) ) {
-    $path             = explode( '/', __DIR__ );
-    $server_root_path = '/' . $path[1] . '/' . $path[2];
+    $path             = explode( '/', str_replace('\\', '/', __DIR__) );
+    $server_root_path = '/' . ($path[1] ?? '') . '/' . ($path[2] ?? '');
     define( 'HOSTINGER_AI_ASSISTANT_WP_AI_TOKEN', $server_root_path . '/.api_token' );
 }
 

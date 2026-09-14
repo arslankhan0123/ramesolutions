@@ -110,13 +110,6 @@ class Placeholder extends Base {
 	private $_ph_queue = [];
 
 	/**
-	 * Stats & request summary for throttling.
-	 *
-	 * @var array<string,mixed>
-	 */
-	protected $_summary;
-
-	/**
 	 * Init
 	 *
 	 * @since 3.0
@@ -288,8 +281,6 @@ class Placeholder extends Base {
 			$html
 		);
 
-		// $html    = str_replace( array( ' src=', ' srcset=', ' sizes=' ), array( ' data-src=', ' data-srcset=', ' data-sizes=' ), $html );
-		// $html    = str_replace( '<img ', '<img data-lazyloaded="1"' . $additional_attr . ' src="' . esc_url( Str::trim_quotes( $this_placeholder ) ) . '" ', $html );
 		$snippet = $html . $snippet;
 
 		return $snippet;
